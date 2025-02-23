@@ -4,14 +4,16 @@ import { cn } from "@workspace/ui/lib/utils"
 import Image from "next/image"
 
 interface SyncBadgeProps {
-  sync: string
+  sync: string;
+  className?: string;
 }
 
-export function SyncBadge({ sync }: SyncBadgeProps) {
+export function SyncBadge({ className, sync }: SyncBadgeProps) {
   return (
     <Badge 
       variant={getSyncVariant(sync)}
       className={cn(
+        className,
         "font-medium inline-flex items-center gap-1.5",
         sync.toLowerCase() === 'in sync' && "bg-success text-white",
         sync.toLowerCase() === 'out of sync' && "bg-warning text-white",

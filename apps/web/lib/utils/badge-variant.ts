@@ -1,13 +1,13 @@
 
-type BadgeVariant = 'default' | 'destructive' | 'outline' | 'secondary';
+type BadgeVariant = 'default' | 'success' | 'warning' | 'error';
 export const getStatusVariant = (status: string): BadgeVariant => {
   switch (status.toLowerCase()) {
     case 'active':
-      return 'default';
+      return 'success';
     case 'suspended':
-      return 'secondary';
+      return 'warning';
     case 'expired':
-      return 'destructive';
+      return 'error';
     default:
       return 'default';
   }
@@ -15,12 +15,12 @@ export const getStatusVariant = (status: string): BadgeVariant => {
 export const getSyncVariant = (sync: string): BadgeVariant => {
   switch (sync.toLowerCase()) {
     case 'in sync':
-      return 'default';
+      return 'success';
     case 'out of sync':
-      return 'secondary';
+      return 'warning';
     case 'not found in s2':
     case 'not found in temptation':
-      return 'destructive';
+      return 'error';
     default:
       return 'default';
   }

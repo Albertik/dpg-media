@@ -15,7 +15,7 @@ export function SubscriptionsTable({ subscriptions }: SubscriptionsTableProps) {
       <TableHeader>
         <TableRow>
           {tableHeaders.map((header) => (
-            <TableHead className="font-medium" key={header}>{header}</TableHead>
+            <TableHead className="font-medium" key={header}>{header.toUpperCase()}</TableHead>
           ))}
         </TableRow>
       </TableHeader>
@@ -26,10 +26,10 @@ export function SubscriptionsTable({ subscriptions }: SubscriptionsTableProps) {
             <TableCell>{subscription.brand}</TableCell>
             <TableCell>{subscription.formula}</TableCell>
             <TableCell>
-              <StatusBadge status={subscription.status} />
+              <StatusBadge className="cursor-pointer" status={subscription.status} />
             </TableCell>
             <TableCell>
-              <SyncBadge sync={subscription.sync} />
+              <SyncBadge className="cursor-pointer" sync={subscription.sync} />
             </TableCell>
           </TableRow>
         ))}

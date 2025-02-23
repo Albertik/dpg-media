@@ -3,14 +3,16 @@ import { Badge } from "@workspace/ui/components/badge"
 import { cn } from "@workspace/ui/lib/utils"
 
 interface StatusBadgeProps {
-  status: string
+  status: string;
+  className?: string;
 }
 
-export function StatusBadge({ status }: StatusBadgeProps) {
+export function StatusBadge({ className, status }: StatusBadgeProps) {
   return (
-    <Badge 
+    <Badge
       variant={getStatusVariant(status)}
       className={cn(
+        className,
         "font-medium",
         status.toLowerCase() === 'active' && "bg-success text-white",
         status.toLowerCase() === 'suspended' && "bg-warning text-white",
