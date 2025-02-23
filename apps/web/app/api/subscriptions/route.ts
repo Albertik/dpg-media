@@ -14,15 +14,32 @@ const STATUS_MAPPING: Record<Subscription['status'], string> = {
     OUT_OF_SYNC: 'Out of sync',
   };  
 
-export function GET() {
-    const mappedResponse = {...stubResponse, subscriptions: stubResponse.subscriptions.map((subscription) => ({
-        id: subscription.id,
-        brand: subscription.brand,
-        formula: subscription.formula,
-        status: STATUS_MAPPING[subscription.status],
-        sync: SYNC_MAPPING[subscription.sync]
-    }))}
-    return NextResponse.json(mappedResponse);
+export async function GET() {
+    try {
+        const mappedResponse = {
+            ...stubResponse,
+            subscriptions: stubResponse.subscriptions.map((subscription) => ({
+                id: subscription.id,
+                brand: subscription.brand,
+                formula: subscription.formula,
+                status: STATUS_MAPPING[subscription.status] || 'Unknown',
+                sync: SYNC_MAPPING[subscription.sync] || 'Unknown'
+            }))
+        };
+
+        return new NextResponse(JSON.stringify(mappedResponse), {
+            status: 200,
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+    } catch (error) {
+        console.error('Error in GET /api/subscriptions:', error);
+        return new NextResponse(
+            JSON.stringify({ error: 'Internal Server Error' }),
+            { status: 500, headers: { 'Content-Type': 'application/json' } }
+        );
+    }
 }
 
 export type Subscription = {
