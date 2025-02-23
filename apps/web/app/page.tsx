@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { Button } from "@workspace/ui/components/button"
 import { SubscriptionResponse } from "./api/subscriptions/route";
 import { BASE_URL } from "@/lib/constants";
