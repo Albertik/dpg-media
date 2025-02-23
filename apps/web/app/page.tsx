@@ -6,10 +6,27 @@ import { BASE_URL } from "@/lib/constants";
 import { SubscriptionsTable, SourceInfo } from "@/components/subscriptions";
 
 async function getSubscriptions(): Promise<SubscriptionResponse> {
-  const res = await fetch(`${BASE_URL}/api/subscriptions`);
-  if (!res.ok) throw new Error('Failed to fetch subscriptions');
-  
-  return res.json();
+  try {
+    console.log('Fetching subscriptions from:', `${BASE_URL}/api/subscriptions`);
+    const res = await fetch(`${BASE_URL}/api/subscriptions`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    
+    if (!res.ok) {
+      console.error('Failed to fetch subscriptions:', res.status, res.statusText);
+      throw new Error(`Failed to fetch subscriptions: ${res.status} ${res.statusText}`);
+    }
+    
+    const data = await res.json();
+    console.log('Subscriptions fetched successfully');
+    return data;
+  } catch (error) {
+    console.error('Error fetching subscriptions:', error);
+    throw error;
+  }
 }
 
 function EmptyState() {

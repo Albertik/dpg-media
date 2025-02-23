@@ -1,2 +1,1 @@
-// most commonly it would be a imported from environment variable
-export const BASE_URL = 'http://localhost:3000';
+export const BASE_URL = process.env.NEXT_PUBLIC_API_URL ? `https://${process.env.NEXT_PUBLIC_API_URL}` : 'http://localhost:3000';
