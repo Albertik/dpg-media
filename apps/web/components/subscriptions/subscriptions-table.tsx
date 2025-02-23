@@ -7,7 +7,7 @@ interface SubscriptionsTableProps {
   subscriptions: Subscription[]
 }
 
-export function SubscriptionsTable({ subscriptions }: SubscriptionsTableProps) {
+export function SubscriptionsTable({ subscriptgithions }: SubscriptionsTableProps) {
   const tableHeaders = Object.keys(subscriptions.at(0) || {});
 
   return (
