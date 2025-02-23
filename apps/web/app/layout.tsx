@@ -1,7 +1,7 @@
 import { Hanken_Grotesk } from "next/font/google"
 import "@workspace/ui/globals.css"
 import { Providers } from "@/components/providers"
-import { ErrorBoundary } from "./components/error-boundary"
+import { ErrorBoundary } from "../components/error-boundary"
 
 const fontSans = Hanken_Grotesk({
   subsets: ["latin"],
