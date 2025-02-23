@@ -1,12 +1,43 @@
 import { Button } from "@workspace/ui/components/button"
+import { SubscriptionResponse } from "./api/subscriptions/route";
+import { BASE_URL } from "@/lib/constants";
+import { SubscriptionsTable, SourceInfo } from "@/components/subscriptions";
 
-export default function Page() {
+async function getSubscriptions(): Promise<SubscriptionResponse> {
+  const res = await fetch(`${BASE_URL}/api/subscriptions`);
+  if (!res.ok) throw new Error('Failed to fetch subscriptions');
+  
+  return res.json();
+}
+
+function EmptyState() {
   return (
     <div className="flex items-center justify-center min-h-svh">
       <div className="flex flex-col items-center justify-center gap-4">
-        <h1 className="text-2xl font-bold">Hello World</h1>
-        <Button size="sm">Button</Button>
+        <h1 className="text-2xl font-bold">Subscriptions</h1>
+        <p>No subscriptions found</p>
+        <Button>Refresh</Button>
       </div>
     </div>
   )
+}
+
+export default async function Page() {
+  const data = await getSubscriptions();
+
+  if (!data.subscriptions?.length) {
+    return <EmptyState />
+  }
+
+  return (
+    <div className="flex items-center justify-center min-h-svh p-6">
+      <div className="flex flex-col gap-6 w-full max-w-5xl">
+        <div className="flex flex-col gap-6">
+          <h1 className="text-2xl font-bold tracking-tight px-1">Subscriptions</h1>
+          <SubscriptionsTable subscriptions={data.subscriptions} />
+          <SourceInfo source={data.source} />
+        </div>
+      </div>
+    </div>
+  );
 }

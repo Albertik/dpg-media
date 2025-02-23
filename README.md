@@ -29,3 +29,9 @@ To use the components in your app, import them from the `ui` package.
 ```tsx
 import { Button } from "@workspace/ui/components/ui/button"
 ```
+
+## Instructions
+
+1. Run `pnpm dlx shadcn@latest init` to initialize the monorepo.
+2. Run `pnpm dlx shadcn@latest add table -c apps/web` to add the table component to your app.
+

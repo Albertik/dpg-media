@@ -16,6 +16,21 @@ const config = {
         mono: ["var(--font-mono)", ...fontFamily.mono],
       },
       colors: {
+        success: {
+          DEFAULT: "rgb(22 163 74)",
+          foreground: "rgb(21 128 61)",
+          muted: "rgb(220 252 231)",
+        },
+        warning: {
+          DEFAULT: "rgb(234 179 8)",
+          foreground: "rgb(161 98 7)",
+          muted: "rgb(254 249 195)",
+        },
+        error: {
+          DEFAULT: "rgb(239 68 68)",
+          foreground: "rgb(185 28 28)",
+          muted: "rgb(254 226 226)",
+        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

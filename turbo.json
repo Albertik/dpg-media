@@ -2,6 +2,11 @@
   "$schema": "https://turbo.build/schema.json",
   "ui": "tui",
   "tasks": {
+    "__transit": {
+			"dependsOn": [
+				"^__transit"
+			]
+		},
     "build": {
       "dependsOn": ["^build"],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
@@ -16,6 +21,17 @@
     "dev": {
       "cache": false,
       "persistent": true
-    }
+    },
+
+		"test": {
+			"dependsOn": [
+				"__transit"
+			]
+		},
+		"test:watch": {
+			"dependsOn": [
+				"__transit"
+			]
+		}
   }
 }
